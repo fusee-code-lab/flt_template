@@ -1,5 +1,7 @@
+import 'package:flt_template/music/music_lib.dart';
 import 'package:flt_template/router/router.dart';
 import 'package:flt_template/utils/common/logger.dart';
+import 'package:flt_template/utils/network/dio.dart';
 import 'package:flt_template/utils/ui/fonts.dart';
 import 'package:flt_template/utils/ui/scroll_behavior.dart';
 import 'package:flt_template/constants.dart';
@@ -13,6 +15,9 @@ import 'package:talker_riverpod_logger/talker_riverpod_logger_observer.dart';
 void main() async {
   // init application
   WidgetsFlutterBinding.ensureInitialized();
+
+  await initializeGloblDio(debugMode: kDebugMode);
+  final musicSDK = await MusicSDK.initializeMusicSDK();
 
   runApp(
     ProviderScope(

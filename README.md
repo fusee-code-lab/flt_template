@@ -64,3 +64,5 @@ mark [riverpod#1033](https://github.com/rrousselGit/riverpod/issues/1033) ，dev
 - [ ] talker router logger
 - [ ] save talker logs to file
 - [ ] 路由权限管理
+- [ ] AppError
+  - 音乐 API error handler 返回统一错误，在统一的 CommonHandler 进行处理
