@@ -4,7 +4,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flt_template/constants.dart';
-import 'package:flt_template/music/network/common_handler.dart';
+import 'package:flt_template/services/music/network/common_handler.dart';
 import 'package:flt_template/utils/common/logger.dart';
 import 'package:flt_template/utils/common/path_manager.dart';
 import 'package:talker/talker.dart';
