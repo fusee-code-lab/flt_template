@@ -10,9 +10,28 @@ class NavigationService {
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
-  return GoRouter(
+  final router = GoRouter(
     navigatorKey: NavigationService.navigatorKey,
+    initialLocation: SplashRoute().location,
     debugLogDiagnostics: kDebugMode,
-    routes: $appRoutes
+    routes: $appRoutes,
+    redirect: (context, state) {
+      // handle redirect logic here
+
+      return null;
+    },
   );
+  ref.onDispose(router.dispose);
+
+  return router;
+});
+
+final routeInformationProvider = ChangeNotifierProvider<GoRouteInformationProvider>((ref) {
+  final router = ref.watch(routerProvider);
+  return router.routeInformationProvider;
+});
+
+/// 最新的路由 Uri
+final currentRouteProvider = Provider((ref) {
+  return ref.watch(routeInformationProvider).value.uri;
 });

@@ -50,6 +50,8 @@ final flattened = nestedList.flatten(); // [1, 2, 3, 4, 5, 6]
 
 使用 riverpod 进行状态管理，使用 hooks_riverpod 以配合 flutter_hooks 使用，但不启用代码生成, 查看 [快速入门文档](https://riverpod.dev/zh-Hans/docs/introduction/getting_started)。同时采用 [talker_riverpod_logger](https://pub.dev/packages/talker_riverpod_logger) 来跟踪 riverpod 日志到 talker。
 
+mark [riverpod#1033](https://github.com/rrousselGit/riverpod/issues/1033) ，devtools 开发进展，鸽。。
+
 使用 [go_router](https://pub.dev/packages/go_router) 作为路由方案，并使用[类型安全路由](https://pub.dev/documentation/go_router/latest/topics/Type-safe%20routes-topic.html)，查看 [文档](https://pub.dev/documentation/go_router/latest/), 以及 [Flutter go_router 路由管理全面指南](https://juejin.cn/post/7270343009790853172)。
 
 ## Resources
@@ -61,3 +63,4 @@ final flattened = nestedList.flatten(); // [1, 2, 3, 4, 5, 6]
 
 - [ ] talker router logger
 - [ ] save talker logs to file
+- [ ] 路由权限管理

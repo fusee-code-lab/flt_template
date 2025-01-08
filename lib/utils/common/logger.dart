@@ -24,19 +24,25 @@ class MetaLoggerFormatter implements LoggerFormatter {
 final talker = Talker(
   settings: TalkerSettings(
     useConsoleLogs: kDebugMode,
+    colors: {
+        TalkerLogType.error.key: AnsiPen()..red(),
+        TalkerLogType.debug.key: AnsiPen(),
+        TalkerLogType.critical.key: AnsiPen()..rgb(r: 0.96, g: 0.5, b: 0.1),
+        TalkerLogType.warning.key: AnsiPen()..yellow(),
+        TalkerLogType.verbose.key:  AnsiPen()..magenta(),
+        TalkerLogType.info.key: AnsiPen()..blue(),
+
+        /// Riverpod section
+        TalkerLogType.riverpodAdd.key: AnsiPen()..green(),
+        TalkerLogType.riverpodUpdate.key: AnsiPen()..green(),
+        TalkerLogType.riverpodDispose.key: AnsiPen()..xterm(198),
+        TalkerLogType.riverpodFail.key: AnsiPen()..red(),
+    }
   ),
   logger: TalkerLogger(
     formatter: const MetaLoggerFormatter(),
     settings: TalkerLoggerSettings(
       enableColors: defaultTargetPlatform != TargetPlatform.iOS,
-      colors: {
-        LogLevel.error: AnsiPen()..red(),
-        LogLevel.debug: AnsiPen(),
-        LogLevel.critical: AnsiPen()..rgb(r: 0.96, g: 0.5, b: 0.1),
-        LogLevel.warning: AnsiPen()..yellow(),
-        LogLevel.verbose:  AnsiPen()..magenta(),
-        LogLevel.info: AnsiPen()..blue(),
-      },
     ),
   )
 );
