@@ -64,8 +64,6 @@ extension LogLevelExt on LogLevel {
         return '🔍';
       case LogLevel.info:
         return 'ℹ️';
-      default:
-        return '';
     }
   }
 }
