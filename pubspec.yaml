@@ -33,6 +33,7 @@ dependencies:
   talker_riverpod_logger: ^4.6.0
   go_router: ^14.6.3
   flutter_hooks: ^0.20.5
+  shared_preferences: ^2.3.5
 
 dev_dependencies:
   flutter_test:
