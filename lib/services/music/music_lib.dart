@@ -1,6 +1,6 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:flt_template/music/network/dio.dart';
+import 'package:flt_template/services/music/network/dio.dart';
 import 'package:flt_template/utils/common/logger.dart';
 import 'package:flt_template/utils/common/path_manager.dart';
 

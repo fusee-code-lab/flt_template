@@ -1,4 +1,4 @@
-import 'package:flt_template/music/music_lib.dart';
+import 'package:flt_template/services/music/music_lib.dart';
 import 'package:flt_template/router/router.dart';
 import 'package:flt_template/utils/common/logger.dart';
 import 'package:flt_template/utils/network/dio.dart';
