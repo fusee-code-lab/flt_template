@@ -10,14 +10,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:injector/injector.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_riverpod_logger/talker_riverpod_logger_observer.dart';
 
 void main() async {
   // init application
   WidgetsFlutterBinding.ensureInitialized();
 
+  // init services
   await initializeGloblDio(debugMode: kDebugMode);
   final musicSDK = await MusicSDK.initializeMusicSDK();
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  // register injector
+  Injector.appInstance.registerSingleton<MusicSDK>(() => musicSDK);
+  Injector.appInstance.registerSingleton<SharedPreferences>(() => sharedPreferences);
 
   runApp(
     ProviderScope(

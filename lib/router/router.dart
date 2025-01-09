@@ -32,6 +32,8 @@ final routeInformationProvider = ChangeNotifierProvider<GoRouteInformationProvid
 });
 
 /// 最新的路由 Uri
+/// TODO: chck pop action can be triggered?
+/// see: https://github.com/flutter/flutter/issues/134013
 final currentRouteProvider = Provider((ref) {
   return ref.watch(routeInformationProvider).value.uri;
 });
