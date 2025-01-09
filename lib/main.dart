@@ -1,10 +1,13 @@
 import 'package:flt_template/services/music/music_lib.dart';
 import 'package:flt_template/router/router.dart';
+import 'package:flt_template/services/settings/app_settings_providers.dart';
+import 'package:flt_template/services/settings/ui/thme_model_ui.dart';
 import 'package:flt_template/utils/common/logger.dart';
 import 'package:flt_template/utils/network/dio.dart';
 import 'package:flt_template/utils/ui/fonts.dart';
 import 'package:flt_template/utils/ui/scroll_behavior.dart';
 import 'package:flt_template/constants.dart';
+import 'package:flt_template/utils/ui/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +28,8 @@ void main() async {
 
   // register injector
   Injector.appInstance.registerSingleton<MusicSDK>(() => musicSDK);
-  Injector.appInstance.registerSingleton<SharedPreferences>(() => sharedPreferences);
+  Injector.appInstance
+      .registerSingleton<SharedPreferences>(() => sharedPreferences);
 
   runApp(
     ProviderScope(
@@ -43,11 +47,13 @@ class TingApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cupertinoTextTheme = CupertinoTextThemeData();
-
-    // TODO: theme setup
-
+    final userThemeSelect =
+        ref.watch(appSettingsProvider.select((it) => it.themeModeSelect));
     final router = ref.watch(routerProvider);
+
+    final lightThemeData = buildLightThemeData(context);
+    final darkThemeData = buildDarkThemeData(context);
+    final cupertinoTextTheme = CupertinoTextThemeData();
 
     return CupertinoTheme(
       data: CupertinoThemeData(
@@ -57,9 +63,13 @@ class TingApp extends ConsumerWidget {
       ),
       child: MaterialApp.router(
         title: appTitle,
-        themeAnimationStyle: kIsWeb ? AnimationStyle.noAnimation : null,
+        // 在 Web 上不使用动画以确保性能？
+        // themeAnimationStyle: kIsWeb ? AnimationStyle.noAnimation : null,
         debugShowCheckedModeBanner: false,
         scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
+        theme: lightThemeData,
+        darkTheme: darkThemeData,
+        themeMode: userThemeSelect.toFltterThemeMode(),
         supportedLocales: const [
           // 加上该配置是为了解决部分平台下中文字体渲染的问题
           Locale('zh', "CN")

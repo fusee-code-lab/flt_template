@@ -1,0 +1,16 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#535C91",
+    "titleBar.border": "#535C91",
+    "titleBar.activeForeground": "#b6b5e2",
+    "titleBar.inactiveBackground": "#6d74a2",
+    "titleBar.inactiveForeground": "#c1c0e6"
+  },
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "lldb.launch.expressions": "native",
+  "dart.env": {
+      "CHROME_EXECUTABLE": "/usr/bin/chromium"
+  },
+  "dart.showTodos": false,
+  "editor.rulers": [120]
+}
