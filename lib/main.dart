@@ -1,4 +1,3 @@
-import 'package:flt_template/services/music/music_lib.dart';
 import 'package:flt_template/router/router.dart';
 import 'package:flt_template/services/settings/app_settings_providers.dart';
 import 'package:flt_template/services/settings/ui/thme_model_ui.dart';
@@ -23,11 +22,9 @@ void main() async {
 
   // init services
   await initializeGloblDio(debugMode: kDebugMode);
-  final musicSDK = await MusicSDK.initializeMusicSDK();
   final sharedPreferences = await SharedPreferences.getInstance();
 
   // register injector
-  Injector.appInstance.registerSingleton<MusicSDK>(() => musicSDK);
   Injector.appInstance
       .registerSingleton<SharedPreferences>(() => sharedPreferences);
 
