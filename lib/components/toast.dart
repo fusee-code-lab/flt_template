@@ -8,7 +8,6 @@ import 'dart:collection';
 
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart' as cherry_toast;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,7 +60,7 @@ class _ToastManager {
 
       // theme
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
-      shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.2),
+      shadowColor: Theme.of(context).colorScheme.shadow.withAlpha(51),
     );
 
     return (toast, key);

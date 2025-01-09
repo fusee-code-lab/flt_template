@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 const appTitle = "Ting";
 
 const releaseNetworkConnectTimeoutSeconds = 8;
