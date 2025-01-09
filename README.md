@@ -2,6 +2,11 @@
 
 这是一个 Flutter 应用开发模板，一个音乐搜索播放 Demo App，集成了当前 Flutter 生态中最佳实践和主流技术栈。
 
+## 相关项目
+
+- [lyrics_parser](https://github.com/fusee-code-lab/lyrics_parser)
+- [dart_music_api](https://github.com/fusee-code-lab/dart_music_api)
+
 ## Features
 
 - 完整的项目结构设计
@@ -35,7 +40,7 @@
 flutter pub get
 ```
 
-运行 app 之前，运行代码生成 watched
+运行 app 之前，运行 build_runner 来生成代码
 
 ```bash
 flutter pub run build_runner watch

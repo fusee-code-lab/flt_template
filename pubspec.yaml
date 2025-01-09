@@ -36,6 +36,8 @@ dependencies:
   shared_preferences: ^2.3.5
   injector: ^4.0.0
   path: ^1.9.0
+  dart_music_api:
+    git: https://github.com/fusee-code-lab/dart_music_api.git
 
 dev_dependencies:
   flutter_test:
