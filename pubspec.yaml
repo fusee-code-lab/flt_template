@@ -39,7 +39,7 @@ dependencies:
   dart_music_api:
     git:
       url: https://github.com/fusee-code-lab/dart_music_api.git
-      ref: 94bf2470e91105936c2b42db7f180555315de28d
+      ref: f4acd7691f7d315e1a745e4a1901ee30eda40406
 
 dev_dependencies:
   flutter_test:
