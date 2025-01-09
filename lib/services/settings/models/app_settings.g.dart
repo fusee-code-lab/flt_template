@@ -11,11 +11,13 @@ _$AppSettingsImpl _$$AppSettingsImplFromJson(Map<String, dynamic> json) =>
       themeModeSelect: $enumDecodeNullable(
               _$ThemeModeSelectEnumMap, json['themeModeSelect']) ??
           ThemeModeSelect.system,
+      initializedVersion: json['initializedVersion'] as String?,
     );
 
 Map<String, dynamic> _$$AppSettingsImplToJson(_$AppSettingsImpl instance) =>
     <String, dynamic>{
       'themeModeSelect': _$ThemeModeSelectEnumMap[instance.themeModeSelect]!,
+      'initializedVersion': instance.initializedVersion,
     };
 
 const _$ThemeModeSelectEnumMap = {

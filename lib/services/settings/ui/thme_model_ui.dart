@@ -41,4 +41,15 @@ extension ThemeModeSelectFlutter on ThemeModeSelect {
         return ThemeMode.dark;
     }
   }
+
+  Brightness toBrightness(BuildContext context) {
+    switch (this) {
+      case ThemeModeSelect.system:
+        return MediaQuery.of(context).platformBrightness;
+      case ThemeModeSelect.light:
+        return Brightness.light;
+      case ThemeModeSelect.dark:
+        return Brightness.dark;
+    }
+  }
 }

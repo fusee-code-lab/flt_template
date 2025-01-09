@@ -7,5 +7,6 @@
   "dart.showTodos": false,
   "editor.rulers": [
     120
-  ]
+  ],
+  "dart.lineLength": 120
 }

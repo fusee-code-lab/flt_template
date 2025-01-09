@@ -22,6 +22,9 @@ AppSettings _$AppSettingsFromJson(Map<String, dynamic> json) {
 mixin _$AppSettings {
   ThemeModeSelect get themeModeSelect => throw _privateConstructorUsedError;
 
+  /// App 最后初始化的版本号
+  String? get initializedVersion => throw _privateConstructorUsedError;
+
   /// Serializes this AppSettings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -38,7 +41,7 @@ abstract class $AppSettingsCopyWith<$Res> {
           AppSettings value, $Res Function(AppSettings) then) =
       _$AppSettingsCopyWithImpl<$Res, AppSettings>;
   @useResult
-  $Res call({ThemeModeSelect themeModeSelect});
+  $Res call({ThemeModeSelect themeModeSelect, String? initializedVersion});
 }
 
 /// @nodoc
@@ -57,12 +60,17 @@ class _$AppSettingsCopyWithImpl<$Res, $Val extends AppSettings>
   @override
   $Res call({
     Object? themeModeSelect = null,
+    Object? initializedVersion = freezed,
   }) {
     return _then(_value.copyWith(
       themeModeSelect: null == themeModeSelect
           ? _value.themeModeSelect
           : themeModeSelect // ignore: cast_nullable_to_non_nullable
               as ThemeModeSelect,
+      initializedVersion: freezed == initializedVersion
+          ? _value.initializedVersion
+          : initializedVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -75,7 +83,7 @@ abstract class _$$AppSettingsImplCopyWith<$Res>
       __$$AppSettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeModeSelect themeModeSelect});
+  $Res call({ThemeModeSelect themeModeSelect, String? initializedVersion});
 }
 
 /// @nodoc
@@ -92,12 +100,17 @@ class __$$AppSettingsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? themeModeSelect = null,
+    Object? initializedVersion = freezed,
   }) {
     return _then(_$AppSettingsImpl(
       themeModeSelect: null == themeModeSelect
           ? _value.themeModeSelect
           : themeModeSelect // ignore: cast_nullable_to_non_nullable
               as ThemeModeSelect,
+      initializedVersion: freezed == initializedVersion
+          ? _value.initializedVersion
+          : initializedVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -105,7 +118,8 @@ class __$$AppSettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppSettingsImpl implements _AppSettings {
-  const _$AppSettingsImpl({this.themeModeSelect = ThemeModeSelect.system});
+  const _$AppSettingsImpl(
+      {this.themeModeSelect = ThemeModeSelect.system, this.initializedVersion});
 
   factory _$AppSettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppSettingsImplFromJson(json);
@@ -114,9 +128,13 @@ class _$AppSettingsImpl implements _AppSettings {
   @JsonKey()
   final ThemeModeSelect themeModeSelect;
 
+  /// App 最后初始化的版本号
+  @override
+  final String? initializedVersion;
+
   @override
   String toString() {
-    return 'AppSettings(themeModeSelect: $themeModeSelect)';
+    return 'AppSettings(themeModeSelect: $themeModeSelect, initializedVersion: $initializedVersion)';
   }
 
   @override
@@ -125,12 +143,15 @@ class _$AppSettingsImpl implements _AppSettings {
         (other.runtimeType == runtimeType &&
             other is _$AppSettingsImpl &&
             (identical(other.themeModeSelect, themeModeSelect) ||
-                other.themeModeSelect == themeModeSelect));
+                other.themeModeSelect == themeModeSelect) &&
+            (identical(other.initializedVersion, initializedVersion) ||
+                other.initializedVersion == initializedVersion));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, themeModeSelect);
+  int get hashCode =>
+      Object.hash(runtimeType, themeModeSelect, initializedVersion);
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -149,14 +170,19 @@ class _$AppSettingsImpl implements _AppSettings {
 }
 
 abstract class _AppSettings implements AppSettings {
-  const factory _AppSettings({final ThemeModeSelect themeModeSelect}) =
-      _$AppSettingsImpl;
+  const factory _AppSettings(
+      {final ThemeModeSelect themeModeSelect,
+      final String? initializedVersion}) = _$AppSettingsImpl;
 
   factory _AppSettings.fromJson(Map<String, dynamic> json) =
       _$AppSettingsImpl.fromJson;
 
   @override
   ThemeModeSelect get themeModeSelect;
+
+  /// App 最后初始化的版本号
+  @override
+  String? get initializedVersion;
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.

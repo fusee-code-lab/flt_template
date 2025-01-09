@@ -11,3 +11,8 @@ final sharedPreferencesProvider = Provider((ref) {
 final appSettingsProvider = NotifierProvider.autoDispose<AppSettingsNotifier, AppSettings>(() {
   return AppSettingsNotifier();
 });
+
+final latestInitializedVersionProvider = Provider<String?>((ref) {
+  final preferences = ref.watch(appSettingsProvider);
+  return preferences.initializedVersion;
+});

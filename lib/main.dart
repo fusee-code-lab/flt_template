@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:injector/injector.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_riverpod_logger/talker_riverpod_logger_observer.dart';
 
@@ -22,11 +23,12 @@ void main() async {
 
   // init services
   await initializeGloblDio(debugMode: kDebugMode);
+  final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
 
   // register injector
-  Injector.appInstance
-      .registerSingleton<SharedPreferences>(() => sharedPreferences);
+  Injector.appInstance.registerSingleton<SharedPreferences>(() => sharedPreferences);
+  Injector.appInstance.registerSingleton<PackageInfo>(() => packageInfo);
 
   runApp(
     ProviderScope(
@@ -44,8 +46,7 @@ class TingApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userThemeSelect =
-        ref.watch(appSettingsProvider.select((it) => it.themeModeSelect));
+    final userThemeSelect = ref.watch(appSettingsProvider.select((it) => it.themeModeSelect));
     final router = ref.watch(routerProvider);
 
     final lightThemeData = buildLightThemeData(context);
@@ -54,6 +55,7 @@ class TingApp extends ConsumerWidget {
 
     return CupertinoTheme(
       data: CupertinoThemeData(
+        brightness: userThemeSelect.toBrightness(context),
         textTheme: cupertinoTextTheme.withFontFeatures(
           const [FontFeature.proportionalFigures()],
         ),

@@ -22,4 +22,10 @@ class AppSettingsNotifier extends AutoDisposeNotifier<AppSettings> {
     preferences.setString('themeModeSelect', themeModeSelect.name);
     state = state.copyWith(themeModeSelect: themeModeSelect);
   }
+
+  void updateInitializedVersion(String version) {
+    final preferences = ref.watch(sharedPreferencesProvider);
+    preferences.setString('initializedVersion', version);
+    state = state.copyWith(initializedVersion: version);
+  }
 }
