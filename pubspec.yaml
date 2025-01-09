@@ -37,7 +37,9 @@ dependencies:
   injector: ^4.0.0
   path: ^1.9.0
   dart_music_api:
-    git: https://github.com/fusee-code-lab/dart_music_api.git
+    git:
+      url: https://github.com/fusee-code-lab/dart_music_api.git
+      ref: 94bf2470e91105936c2b42db7f180555315de28d
 
 dev_dependencies:
   flutter_test:
