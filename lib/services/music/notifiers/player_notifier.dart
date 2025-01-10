@@ -8,9 +8,9 @@ sealed class MusicPlayerState {
   final Song song;
   final bool isPlaying;
 
-  const MusicPlayerState(this.song, { this.isPlaying = true });
+  const MusicPlayerState(this.song, {this.isPlaying = true});
 
-  MusicPlayerState copyWith({ Song? song, bool? isPlaying }) {
+  MusicPlayerState copyWith({Song? song, bool? isPlaying}) {
     return MusicPlayerStateSingle(
       song ?? this.song,
       isPlaying: isPlaying ?? this.isPlaying,
@@ -19,9 +19,8 @@ sealed class MusicPlayerState {
 }
 
 class MusicPlayerStateSingle extends MusicPlayerState {
-  const MusicPlayerStateSingle(super.song, { super.isPlaying = true });
+  const MusicPlayerStateSingle(super.song, {super.isPlaying = true});
 }
-
 
 class PlayerNotifier extends AutoDisposeNotifier<MusicPlayerState?> {
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -29,13 +28,14 @@ class PlayerNotifier extends AutoDisposeNotifier<MusicPlayerState?> {
   @override
   MusicPlayerState? build() {
     ref.onDispose(() {
+      talker.info("audio player disposed");
       _audioPlayer.dispose();
     });
 
     return null;
   }
 
-  void play(Song song) async {
+  Future<void> play(Song song) async {
     if (_audioPlayer.audioSource != null) {
       await _audioPlayer.stop();
       talker.info("audio player stopped");
@@ -44,13 +44,20 @@ class PlayerNotifier extends AutoDisposeNotifier<MusicPlayerState?> {
     final url = ref.read(musicApiProvider).simpleSongUrl(song.id);
     talker.info("will play music from $url");
 
-    final duration = await _audioPlayer.setUrl(url);
-    talker.info("song loadded ${song.name} (duration: $duration)");
+    try {
+      final duration = await _audioPlayer.setUrl(url);
+      talker.info("song loadded ${song.name} (duration: $duration)");
 
-    _audioPlayer.play();
-    talker.info("song played ${song.name}");
+      _audioPlayer.play();
+      talker.info("song played ${song.name}");
 
-    state = MusicPlayerStateSingle(song, isPlaying: true);
+      state = MusicPlayerStateSingle(song, isPlaying: true);
+    } catch (e) {
+      talker.error("failed to play music: $e");
+      state = null;
+
+      rethrow;
+    }
   }
 
   void pause() {

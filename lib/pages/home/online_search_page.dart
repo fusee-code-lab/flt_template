@@ -1,4 +1,5 @@
 import 'package:dart_music_api/music_api.dart';
+import 'package:flt_template/components/toast.dart';
 import 'package:flt_template/services/music/music_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -20,7 +21,10 @@ class OnlineSearchPage extends HookConsumerWidget {
     final scrollController = useScrollController();
 
     final playSong = useCallback((Song song) {
-      ref.read(playerStateProvider.notifier).play(song);
+      ref.read(playerStateProvider.notifier).play(song).catchError((e) {
+        if (!context.mounted) return;
+        context.toastError("播放失败，请稍后重试");
+      });
     }, []);
 
     final listener = useCallback(() {
