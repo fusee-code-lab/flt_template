@@ -68,6 +68,9 @@ flutter test test/ensure_build_test.dart
 - [ ] 保存日志到文件
 - [ ] 路由权限管理 Demo
 - [ ] Database
+- [ ] musc_api logger
+- [ ] music_api error handler
+- [ ] music_api cancel network request when riverpod dispose
 - [ ] i18n
 - [ ] AppError 设计
   - 音乐 API error handler 返回统一错误，在统一的 CommonHandler 进行处理

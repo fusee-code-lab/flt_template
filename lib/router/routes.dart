@@ -1,5 +1,5 @@
 import 'package:flt_template/pages/home/home_page.dart';
-import 'package:flt_template/pages/splash_page.dart';
+import 'package:flt_template/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

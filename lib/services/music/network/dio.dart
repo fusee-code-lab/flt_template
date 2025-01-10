@@ -8,24 +8,22 @@ import 'package:talker/talker.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 
 void configureMusicDio(Dio dio, {bool debugMode = kDebugMode}) {
-  dio.options.connectTimeout =
-      Duration(seconds: debugMode ? 1 : releaseNetworkConnectTimeoutSeconds);
-  dio.options.receiveTimeout =
-      Duration(seconds: debugMode ? 1 : releaseNetworkReceiveTimeoutSeconds);
+  dio.options.connectTimeout = Duration(seconds: debugMode ? 3 : releaseNetworkConnectTimeoutSeconds);
+  dio.options.receiveTimeout = Duration(seconds: debugMode ? 3 : releaseNetworkReceiveTimeoutSeconds);
 
   // business logic common
   dio.interceptors.add(CommonHandler());
 
   // logger
-  dio.interceptors.add(
-    TalkerDioLogger(
-      talker: talker,
-      settings: TalkerDioLoggerSettings(
-        printRequestHeaders: true,
-        printResponseHeaders: false,
-        printResponseMessage: true,
-        responsePen: AnsiPen()..cyan(),
-      ),
-    ),
-  );
+  // dio.interceptors.add(
+  //   TalkerDioLogger(
+  //     talker: talker,
+  //     settings: TalkerDioLoggerSettings(
+  //       printRequestHeaders: true,
+  //       printResponseHeaders: false,
+  //       printResponseMessage: true,
+  //       responsePen: AnsiPen()..cyan(),
+  //     ),
+  //   ),
+  // );
 }
