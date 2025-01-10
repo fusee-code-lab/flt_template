@@ -1,5 +1,5 @@
+import 'package:flt_template/components/player/player_sheet.dart';
 import 'package:flt_template/pages/home/online_search_page.dart';
-import 'package:flt_template/services/music/music_providers.dart';
 import 'package:flt_template/services/settings/models/app_settings.dart';
 import 'package:flt_template/services/settings/ui/thme_model_ui.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +20,7 @@ class HomePage extends HookConsumerWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        extendBody: true,
         appBar: AppBar(
           toolbarHeight: 68,
           title: CupertinoTextField(
@@ -28,6 +29,8 @@ class HomePage extends HookConsumerWidget {
             placeholder: '搜索歌曲',
             prefix: Icon(CupertinoIcons.search, size: 20).padding(horizontal: 10),
             padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+            autocorrect: false,
+            clearButtonMode: OverlayVisibilityMode.always,
             decoration: BoxDecoration(
               color: CupertinoDynamicColor.withBrightness(
                 color: CupertinoColors.white,
@@ -78,6 +81,10 @@ class HomePage extends HookConsumerWidget {
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: PlayerSheet(),
         ),
       ),
     );

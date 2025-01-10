@@ -33,7 +33,7 @@ void main() async {
   runApp(
     ProviderScope(
       // 取消注释以启用 Riverpod Logger
-      observers: [TalkerRiverpodObserver(talker: talker)],
+      // observers: [TalkerRiverpodObserver(talker: talker)],
       child: const TingApp(),
     ),
   );

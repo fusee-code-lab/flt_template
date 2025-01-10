@@ -1,7 +1,9 @@
+import 'package:dart_music_api/music_api.dart';
 import 'package:flt_template/services/music/music_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class OnlineSearchPage extends HookConsumerWidget {
@@ -16,6 +18,10 @@ class OnlineSearchPage extends HookConsumerWidget {
 
     final isLoadMore = useState(false);
     final scrollController = useScrollController();
+
+    final playSong = useCallback((Song song) {
+      ref.read(playerStateProvider.notifier).play(song);
+    }, []);
 
     final listener = useCallback(() {
       if (!isLoadMore.value && scrollController.position.pixels >= scrollController.position.maxScrollExtent + 100) {
@@ -51,12 +57,14 @@ class OnlineSearchPage extends HookConsumerWidget {
                       ).width(15).height(15).padding(vertical: 20, bottom: 50).center()
                     : Container();
               }
-          
+
               final song = songs[index];
               return ListTile(
                 title: Text(song.name),
                 subtitle: Text(song.artists.map((e) => e.name).join(' / ')),
-          
+                onTap: () {
+                  playSong(song);
+                },
                 // album cover
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
@@ -72,7 +80,23 @@ class OnlineSearchPage extends HookConsumerWidget {
           ),
         );
       },
-      loading: () => CircularProgressIndicator().center(),
+      loading: () {
+        return Skeletonizer(
+          enabled: true,
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                  title: Text('Item number $index as title'),
+                  subtitle: const Text('Subtitle here'),
+                  leading: Icon(Icons.ac_unit, size: 40),
+                ),
+              );
+            },
+          ),
+        );
+      },
       error: (error, stack) => Text('Error: $error').center(),
     );
   }

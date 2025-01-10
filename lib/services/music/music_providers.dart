@@ -1,5 +1,6 @@
 import 'package:dart_music_api/music_api.dart';
 import 'package:flt_template/services/music/network/dio.dart';
+import 'package:flt_template/services/music/notifiers/player_notifier.dart';
 import 'package:flt_template/services/music/notifiers/search_pagination_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,4 +21,8 @@ final songSearchProvider = AsyncNotifierProvider.autoDispose.family<SongSearchNo
       return api.searchSongs(query);
     },
   );
+});
+
+final playerStateProvider = NotifierProvider.autoDispose<PlayerNotifier, MusicPlayerState?>(() {
+  return PlayerNotifier();
 });
