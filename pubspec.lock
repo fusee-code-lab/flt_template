@@ -282,8 +282,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "2364ef1e325beb0603fe710962a253c095f795a8"
-      resolved-ref: "2364ef1e325beb0603fe710962a253c095f795a8"
+      ref: "21a4aadc5d037fa73915541500269673748d8276"
+      resolved-ref: "21a4aadc5d037fa73915541500269673748d8276"
       url: "https://github.com/fusee-code-lab/dart_music_api.git"
     source: git
     version: "0.0.0"

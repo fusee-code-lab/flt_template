@@ -29,6 +29,7 @@ class PlayerNotifier extends AutoDisposeNotifier<MusicPlayerState?> {
   MusicPlayerState? build() {
     ref.onDispose(() {
       talker.info("audio player disposed");
+      _audioPlayer.stop();
       _audioPlayer.dispose();
     });
 
@@ -41,10 +42,15 @@ class PlayerNotifier extends AutoDisposeNotifier<MusicPlayerState?> {
       talker.info("audio player stopped");
     }
 
-    final url = ref.read(musicApiProvider).simpleSongUrl(song.id);
-    talker.info("will play music from $url");
-
     try {
+      final urlData = await ref.read(musicApiProvider).songUri(song.id);
+      final url = urlData.data?.url;
+      if (url == null) {
+        throw Exception("获取音乐地址失败"); // TODO: 优化异常类型
+      }
+
+      talker.info("will play music from $url");
+
       final duration = await _audioPlayer.setUrl(url);
       talker.info("song loadded ${song.name} (duration: $duration)");
 
